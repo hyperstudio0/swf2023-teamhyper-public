@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_minimal_kit_cra_ts=self.webpackChunk_minimal_kit_cra_ts||[]).push([[3693],{3693:function(e,n,r){r.r(n),r.d(n,{default:function(){return a}});var t=r(65964),i=r(60858),s=r(46417);function a(){return(0,s.jsxs)(s.Fragment,{children:[(0,s.jsx)(t.ql,{children:(0,s.jsx)("title",{children:" Dashboard: Create a new user"})}),(0,s.jsx)(i.BS,{})]})}}}]);
