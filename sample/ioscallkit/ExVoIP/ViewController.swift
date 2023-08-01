@@ -46,7 +46,7 @@ class ViewController: UIViewController {
             "Accept": "application/json"
         ]
 
-        AF.request("http://localhost:3002/api/v1/smart-contract/auth", method: .post, parameters: parameters, headers: headers).validate().responseJSON { response in
+        AF.request("https://api.teamhyper.hyperplay.co/api/v1/smart-contract/auth", method: .post, parameters: parameters, headers: headers).validate().responseJSON { response in
             switch response.result {
                 case .success(let value):
                     print(value)

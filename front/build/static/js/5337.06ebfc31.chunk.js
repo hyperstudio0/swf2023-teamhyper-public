@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_minimal_kit_cra_ts=self.webpackChunk_minimal_kit_cra_ts||[]).push([[5337],{65337:function(n,t,i){i.r(t),i.d(t,{default:function(){return a}});var r=i(65964),s=i(50971),e=i(46417);function a(){return(0,e.jsxs)(e.Fragment,{children:[(0,e.jsx)(r.ql,{children:(0,e.jsx)("title",{children:" Dashboard: Job List"})}),(0,e.jsx)(s.JD,{})]})}}}]);

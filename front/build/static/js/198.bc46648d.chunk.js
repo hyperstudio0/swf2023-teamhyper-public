@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_minimal_kit_cra_ts=self.webpackChunk_minimal_kit_cra_ts||[]).push([[198],{10198:function(n,r,s){s.r(r),s.d(r,{default:function(){return a}});var t=s(65964),e=s(60858),i=s(46417);function a(){return(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)(t.ql,{children:(0,i.jsx)("title",{children:" Dashboard: User Cards"})}),(0,i.jsx)(e.FQ,{})]})}}}]);

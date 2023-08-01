@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_minimal_kit_cra_ts=self.webpackChunk_minimal_kit_cra_ts||[]).push([[2506],{62506:function(n,r,t){t.r(r),t.d(r,{default:function(){return a}});var i=t(65964),e=t(37590),s=t(46417);function a(){return(0,s.jsxs)(s.Fragment,{children:[(0,s.jsx)(i.ql,{children:(0,s.jsx)("title",{children:" Dashboard: Order List"})}),(0,s.jsx)(e.C,{})]})}}}]);
