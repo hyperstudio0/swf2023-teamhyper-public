@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_minimal_kit_cra_ts=self.webpackChunk_minimal_kit_cra_ts||[]).push([[4586],{95029:function(n,t,i){i.r(t),i.d(t,{default:function(){return a}});var r=i(65964),e=i(72202),s=i(46417);function a(){return(0,s.jsxs)(s.Fragment,{children:[(0,s.jsx)(r.ql,{children:(0,s.jsx)("title",{children:" Foundations: Typography"})}),(0,s.jsx)(e.hv,{})]})}}}]);

@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_minimal_kit_cra_ts=self.webpackChunk_minimal_kit_cra_ts||[]).push([[9445],{39445:function(n,t,e){e.r(t),e.d(t,{default:function(){return a}});var r=e(65964),i=e(30286),s=e(46417);function a(){return(0,s.jsxs)(s.Fragment,{children:[(0,s.jsx)(r.ql,{children:(0,s.jsx)("title",{children:" Dashboard: Create a new post"})}),(0,s.jsx)(i.UY,{})]})}}}]);

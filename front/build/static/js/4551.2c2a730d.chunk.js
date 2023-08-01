@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_minimal_kit_cra_ts=self.webpackChunk_minimal_kit_cra_ts||[]).push([[4551],{14551:function(t,n,i){i.r(n),i.d(n,{default:function(){return c}});var s=i(65964),e=i(30286),r=i(46417);function c(){return(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(s.ql,{children:(0,r.jsx)("title",{children:" Post: List"})}),(0,r.jsx)(e.Ns,{})]})}}}]);

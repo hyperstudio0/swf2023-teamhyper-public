@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_minimal_kit_cra_ts=self.webpackChunk_minimal_kit_cra_ts||[]).push([[1427],{71427:function(n,t,i){i.r(t),i.d(t,{default:function(){return a}});var s=i(65964),e=i(72202),r=i(46417);function a(){return(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(s.ql,{children:(0,r.jsx)("title",{children:" Foundations: Shadows"})}),(0,r.jsx)(e.K0,{})]})}}}]);

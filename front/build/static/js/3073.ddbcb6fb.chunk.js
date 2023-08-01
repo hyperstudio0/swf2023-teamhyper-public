@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_minimal_kit_cra_ts=self.webpackChunk_minimal_kit_cra_ts||[]).push([[3073],{43073:function(i,t,n){n.r(t),n.d(t,{default:function(){return c}});var e=n(65964),s=n(66280),r=n(46417);function c(){return(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(e.ql,{children:(0,r.jsx)("title",{children:" Auth Classic: Register"})}),(0,r.jsx)(s.i6,{})]})}}}]);

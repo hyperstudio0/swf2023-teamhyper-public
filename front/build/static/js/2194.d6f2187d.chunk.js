@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_minimal_kit_cra_ts=self.webpackChunk_minimal_kit_cra_ts||[]).push([[2194],{12194:function(n,s,t){t.r(s),t.d(s,{default:function(){return c}});var i=t(65964),r=t(66280),e=t(46417);function c(){return(0,e.jsxs)(e.Fragment,{children:[(0,e.jsx)(i.ql,{children:(0,e.jsx)("title",{children:" Auth Classic: New Password"})}),(0,e.jsx)(r.rQ,{})]})}}}]);
