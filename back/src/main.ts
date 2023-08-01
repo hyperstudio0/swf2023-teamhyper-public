@@ -61,9 +61,9 @@ async function bootstrapApp() {
     // 개발용 (프론트포트)
     app.enableCors({
         origin: process.env.HOST_SERVICE,
-        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-        allowedHeaders: 'Content-Type, Accept',
-        credentials: true,
+        // methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        // allowedHeaders: 'Content-Type, Accept',
+        // credentials: true,
     });
 
     await app.listen(3001);
@@ -105,9 +105,9 @@ async function bootstrapAdmin() {
     // 개발용 (프론트포트)
     app.enableCors({
         origin: process.env.HOST_SERVICE,
-        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-        allowedHeaders: 'Content-Type, Accept',
-        credentials: true,
+        // methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        // allowedHeaders: 'Content-Type, Accept',
+        // credentials: true,
     });
 
     await app.listen(3002);
