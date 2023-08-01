@@ -8,6 +8,8 @@ import DashboardLayout from 'src/layouts/dashboard';
 import { LoadingScreen } from 'src/components/loading-screen';
 import Swf2023ListPage from "../../pages/dashboard/swf2023/list";
 import Swf2023DectectionPage from "../../pages/dashboard/swf2023/dectection";
+import AddWhitePage from "../../pages/dashboard/swf2023/add-white";
+import AddBlackPage from "../../pages/dashboard/swf2023/add-black";
 
 // ----------------------------------------------------------------------
 
@@ -94,6 +96,8 @@ export const dashboardRoutes = [
           { element: <Swf2023ListPage />, index: true },
           { path: 'list', element: <Swf2023ListPage /> },
           { path: 'detection', element: <Swf2023DectectionPage /> },
+          { path: 'add-white', element: <AddWhitePage /> },
+          { path: 'add-black', element: <AddBlackPage /> },
         ],
       },
       {

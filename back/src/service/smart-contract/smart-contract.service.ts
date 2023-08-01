@@ -1,42 +1,30 @@
-import {Injectable} from '@nestjs/common';
-import {ethers} from 'ethers';
+import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
-import {Count} from "../../model/smart-contract.dto";
+import {AuthResultBody, BlacklistResultBody, Count, PostBlackListBody} from "../../model/smart-contract.dto";
 import * as process from 'process';
-import Web3, {Web3Context} from "web3";
+// import Web3, {ContractExecutionError} from "web3";
+// import {Web3Account} from "web3-eth-accounts/lib/types";
+import {ethers} from 'ethers';
+import {ContractExecutionError, Web3} from "web3";
 import {Web3Account} from "web3-eth-accounts/lib/types";
-import {Contract} from "web3-eth-contract/src/contract";
+import {TxHashService} from "../tx-hash/tx-hash.service";
+import {Mode, TxHashEntity, Type} from "../../domain/txhash/txhash.entity";
 
 const dataFilePath = path.resolve(__dirname, '../../../AntiPhishingSwf2023.json');
 const data = JSON.parse(fs.readFileSync(dataFilePath, 'utf8')) as any;
 
 @Injectable()
 export class SmartContractService {
+    private privateKey = `0x${process.env.OWNER_PRIVATE_KEY}`;
     private contract;
-    private provider: ethers.JsonRpcProvider;
-    private owner: ethers.Wallet;
+    private ownerAddress: Web3Account;
     private web3: Web3;
 
-    constructor() {
+    constructor(private readonly txHashService: TxHashService) {
         this.web3 = new Web3(process.env.JSON_RPC_URL);
-        console.log(this.web3, 'this.web3');
-        console.log(process.env.OWNER_PRIVATE_KEY, 'process.env.OWNER_PRIVATE_KEY');
         this.contract = new this.web3.eth.Contract(data.abi, process.env.CONTRACT_ADDRESS);
-        const ownerNFTAccount: Web3Account = this.web3.eth.accounts.privateKeyToAccount(`0x${process.env.OWNER_PRIVATE_KEY}`);
-        console.log(ownerNFTAccount.address, 'address');
-        console.log(data.abi, 'data.abi');
-        // 컨트랙트 연결
-
-        // this.contract = new this.web3.eth.Contract(PixelBattleContract.abi, PixelBattleContract.contractAddress);
-        console.log(process.env.JSON_RPC_URL, 'process.env.JSON_RPC_URL');
-        // this.provider = new ethers.JsonRpcProvider(process.env.JSON_RPC_URL, {
-        //     name: 'cronosTestnet',
-        //     chainId: 338,
-        // }); // JSON_RPC_URL에는 Ethereum node의 URL을 설정해야 합니다.
-        // this.owner = new ethers.Wallet(process.env.OWNER_PRIVATE_KEY, this.provider);
-        // console.log(this.owner.address,'this.owner.address');
-        // this.contract = new ethers.Contract(process.env.CONTRACT_ADDRESS, data.abi, this.owner); // CONTRACT_ADDRESS에는 스마트 컨트랙트의 주소를 설정해야 합니다.
+        this.ownerAddress = this.web3.eth.accounts.privateKeyToAccount(this.privateKey);
     }
 
     async abi(): Promise<any> {
@@ -47,37 +35,232 @@ export class SmartContractService {
         return process.env.CONTRACT_ADDRESS;
     }
 
-
     async event(): Promise<void> {
-        if (this.contract) {
-            this.contract.once('WhitelistIdentityAdded', (error, event) => {
-                console.log(error, 'error');
-                console.log(event, 'event');
-                // console.log(`WhitelistIdentityAdded event: Hash - ${hash}, DID - ${did}`);
-            });
+        const provider: ethers.providers.JsonRpcProvider = new ethers.providers.JsonRpcProvider(process.env.JSON_RPC_URL);
+        const wallet: ethers.Wallet = new ethers.Wallet(this.privateKey as string, provider);
+        const contract: ethers.Contract = new ethers.Contract(process.env.CONTRACT_ADDRESS as string, data.abi, wallet);
+        if (contract) {
 
-            // this.contract.on("BlacklistIdentityAdded", (hash: string, reason: number, identityType: number) => {
-            //     console.log(`BlacklistIdentityAdded event: Hash - ${hash}, Reason - ${reason}, IdentityType - ${identityType}`);
-            // });
-            //
-            // this.contract.on("WhitelistIdentityDeleted", (hash: string) => {
-            //     console.log(`WhitelistIdentityDeleted event: Hash - ${hash}`);
-            // });
-            //
-            // this.contract.on("BlacklistIdentityDeleted", (hash: string) => {
-            //     console.log(`BlacklistIdentityDeleted event: Hash - ${hash}`);
-            // });
+            try {
+                contract.on("WhitelistIdentityAdded", (hash: string, did: string) => {
+                    console.log(`WhitelistIdentityAdded event: Hash - ${hash}, DID - ${did}`);
+                    const txHash = new TxHashEntity();
+                    txHash.type = Type.WHITELIST;
+                    txHash.mode = Mode.CREATE;
+                    txHash.hash = hash;
+                    this.txHashService.create(txHash, 0);
+                });
+                contract.on("BlacklistIdentityAdded", (hash: string, reason: number, identityType: number) => {
+                    console.log(`BlacklistIdentityAdded event: Hash - ${hash}, DID - ${reason} - ${identityType}`);
+                    const txHash = new TxHashEntity();
+                    txHash.type = Type.BLACKLIST;
+                    txHash.mode = Mode.CREATE;
+                    txHash.hash = hash;
+                    txHash.reason = reason;
+                    txHash.identityType = Number(identityType);
+                    this.txHashService.create(txHash, 0);
+                });
+                contract.on("WhitelistIdentityDeleted", (hash: string) => {
+                    console.log(`WhitelistIdentityDeleted event: Hash - ${hash}`);
+                    const txHash = new TxHashEntity();
+                    txHash.type = Type.WHITELIST;
+                    txHash.mode = Mode.DELETE;
+                    txHash.hash = hash;
+                    this.txHashService.create(txHash, 0);
+
+                });
+                contract.on("BlacklistIdentityDeleted", (hash: string) => {
+                    console.log(`BlacklistIdentityDeleted event: Hash - ${hash}`);
+                    const txHash = new TxHashEntity();
+                    txHash.type = Type.BLACKLIST;
+                    txHash.mode = Mode.DELETE;
+                    txHash.hash = hash;
+                    this.txHashService.create(txHash, 0);
+                });
+            } catch (e) {
+                console.log(e);
+            }
         }
     }
 
     async count(): Promise<Count> {
-        const whiteListBigInt = await this.contract.methods.whiteListCount().call();
-        const whiteList = whiteListBigInt <= BigInt(Number.MAX_SAFE_INTEGER)  ? Number(whiteListBigInt) : 0;
-        const blackListBigInt = await this.contract.methods.blackListCount().call();
-        const blackList = blackListBigInt <= BigInt(Number.MAX_SAFE_INTEGER)  ? Number(blackListBigInt) : 0;
+        const whiteListBigInt = Number(await this.contract.methods.whiteListCount().call());
+        const blackListBigInt = Number(await this.contract.methods.blackListCount().call());
         return {
-            whiteList,
-            blackList,
+            whiteList: whiteListBigInt,
+            blackList: blackListBigInt,
         };
     }
+
+    async postWhiteList(did: string): Promise<string> {
+        try {
+            const estimateGas = await this.web3.eth.estimateGas({
+                from: this.ownerAddress.address,
+                to: await this.contractAddress(),
+                data: this.contract.methods.addToWhiteList(did).encodeABI()
+            });
+            const gasPrice = await this.web3.eth.getGasPrice();
+            const tx = {
+                from: this.ownerAddress.address,
+                to: await this.contractAddress(),
+                data: this.contract.methods.addToWhiteList(did).encodeABI(),
+                gas: (Math.round(Number(estimateGas) * 1.5)), // 1.5배
+                gasPrice: gasPrice
+            };
+            const signedTx = await this.web3.eth.accounts.signTransaction(tx, this.privateKey)
+            const receipt = await this.web3.eth.sendSignedTransaction(signedTx.rawTransaction);
+
+            return receipt.transactionHash.toString();
+        } catch (e) {
+            if (e instanceof ContractExecutionError) {
+                throw new HttpException(
+                    e.innerError.message,
+                    HttpStatus.BAD_REQUEST,
+                );
+            }
+            console.log(e);
+        }
+    }
+
+    async postBlackList(body: PostBlackListBody): Promise<string> {
+        try {
+            const estimateGas = await this.web3.eth.estimateGas({
+                from: this.ownerAddress.address,
+                to: await this.contractAddress(),
+                data: this.contract.methods.addToBlackList(body.id, body.reason, body.identityType).encodeABI()
+            });
+            const gasPrice = await this.web3.eth.getGasPrice();
+            const tx = {
+                from: this.ownerAddress.address,
+                to: await this.contractAddress(),
+                data: this.contract.methods.addToBlackList(body.id, body.reason, body.identityType).encodeABI(),
+                gas: (Math.round(Number(estimateGas) * 1.5)), // 1.5배
+                gasPrice: gasPrice
+            };
+            const signedTx = await this.web3.eth.accounts.signTransaction(tx, this.privateKey)
+            const receipt = await this.web3.eth.sendSignedTransaction(signedTx.rawTransaction);
+
+            return receipt.transactionHash.toString();
+        } catch (e) {
+            if (e instanceof ContractExecutionError) {
+                throw new HttpException(
+                    e.innerError.message,
+                    HttpStatus.BAD_REQUEST,
+                );
+            }
+            console.log(e);
+        }
+    }
+
+    async auth(value: string): Promise<AuthResultBody> {
+        try {
+            const isWhiteListed = await this.isWhiteListed(value);
+            const blackListed = await this.isBlackListed(value);
+            return {
+                isWhiteListed,
+                blackListed
+            }
+        } catch (e) {
+            throw new HttpException(
+                e.message,
+                HttpStatus.BAD_REQUEST,
+            );
+        }
+    }
+
+    async isWhiteListed(value: string): Promise<boolean> {
+        try {
+            return await this.contract.methods.isWhiteListed(value).call()
+        } catch (e) {
+            if (e instanceof ContractExecutionError) {
+                throw new HttpException(
+                    e.innerError.message,
+                    HttpStatus.BAD_REQUEST,
+                );
+            }
+            console.log(e);
+        }
+    }
+
+    async isBlackListed(value: string): Promise<BlacklistResultBody> {
+        try {
+            console.log(value, 'value');
+            const results: any = await this.contract.methods.isBlackListed(value).call();
+            console.log(results, 'results');
+            return {
+                isBlackListed: results['0'] as boolean,
+                reason: Number(results['1']),
+                identityType: Number(results['2']),
+            }
+        } catch (e) {
+            if (e instanceof ContractExecutionError) {
+                throw new HttpException(
+                    e.innerError.message,
+                    HttpStatus.BAD_REQUEST,
+                );
+            }
+            throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    async deleteWhiteList(did: string): Promise<string> {
+        try {
+            const estimateGas = await this.web3.eth.estimateGas({
+                from: this.ownerAddress.address,
+                to: await this.contractAddress(),
+                data: this.contract.methods.removeFromWhiteList(did).encodeABI()
+            });
+            const gasPrice = await this.web3.eth.getGasPrice();
+            const tx = {
+                from: this.ownerAddress.address,
+                to: await this.contractAddress(),
+                data: this.contract.methods.removeFromWhiteList(did).encodeABI(),
+                gas: (Math.round(Number(estimateGas) * 1.5)), // 1.5배
+                gasPrice: gasPrice
+            };
+            const signedTx = await this.web3.eth.accounts.signTransaction(tx, this.privateKey)
+            const receipt = await this.web3.eth.sendSignedTransaction(signedTx.rawTransaction);
+
+            return receipt.transactionHash.toString();
+        } catch (e) {
+            if (e instanceof ContractExecutionError) {
+                throw new HttpException(
+                    e.innerError.message,
+                    HttpStatus.BAD_REQUEST,
+                );
+            }
+            console.log(e);
+        }
+    }
+
+    async deleteBlackList(id: string): Promise<string> {
+        try {
+            const estimateGas = await this.web3.eth.estimateGas({
+                from: this.ownerAddress.address,
+                to: await this.contractAddress(),
+                data: this.contract.methods.removeFromBlackList(id).encodeABI()
+            });
+            const gasPrice = await this.web3.eth.getGasPrice();
+            const tx = {
+                from: this.ownerAddress.address,
+                to: await this.contractAddress(),
+                data: this.contract.methods.removeFromBlackList(id).encodeABI(),
+                gas: (Math.round(Number(estimateGas) * 1.5)), // 1.5배
+                gasPrice: gasPrice
+            };
+            const signedTx = await this.web3.eth.accounts.signTransaction(tx, this.privateKey)
+            const receipt = await this.web3.eth.sendSignedTransaction(signedTx.rawTransaction);
+
+            return receipt.transactionHash.toString();
+        } catch (e) {
+            if (e instanceof ContractExecutionError) {
+                throw new HttpException(
+                    e.innerError.message,
+                    HttpStatus.BAD_REQUEST,
+                );
+            }
+            console.log(e);
+        }
+    }
+
 }

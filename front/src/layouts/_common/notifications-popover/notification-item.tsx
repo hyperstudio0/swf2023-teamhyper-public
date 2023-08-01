@@ -227,7 +227,7 @@ export default function NotificationItem({ notification }: NotificationItemProps
       <Stack sx={{ flexGrow: 1 }}>
         {renderText}
         {notification.type === 'friend' && friendAction}
-        {notification.type === 'project' && projectAction}
+        {/*{notification.type === 'project' && projectAction}*/}
         {notification.type === 'file' && fileAction}
         {notification.type === 'tags' && tagsAction}
         {notification.type === 'payment' && paymentAction}

@@ -95,8 +95,10 @@ export const paths = {
     swf2023: {
       root: `${ROOTS.DASHBOARD}/swf2023`,
       detection: `${ROOTS.DASHBOARD}/swf2023/detection`,
-      black: `${ROOTS.DASHBOARD}/swf2023/black`,
-      white: `${ROOTS.DASHBOARD}/swf2023/white`,
+      addWhite: `${ROOTS.DASHBOARD}/swf2023/add-white`,
+      addBlack: `${ROOTS.DASHBOARD}/swf2023/add-black`,
+      // black: `${ROOTS.DASHBOARD}/swf2023/black`,
+      // white: `${ROOTS.DASHBOARD}/swf2023/white`,
     },
     board: {
       root: `${ROOTS.DASHBOARD}/board`,

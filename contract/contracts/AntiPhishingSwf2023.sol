@@ -108,8 +108,8 @@ contract AntiPhishingSwf2023 is AccessControl {
 
     // ID가 블랙리스트에 있는지 확인하고 사유를 반환하는 함수
     function isBlackListed(string memory _id) public view returns (bool, BlackListReason, uint) {
-        bytes32 hash = keccak256(abi.encodePacked(_id));
-        return (blackListIdentities[hash].idHash == hash, blackListIdentities[hash].reason, blackListIdentities[hash].identityType);
+        bytes32 idHash = keccak256(abi.encodePacked(_id));
+        return (blackListIdentities[idHash].idHash == idHash, blackListIdentities[idHash].reason, blackListIdentities[idHash].identityType);
     }
 
     // 화이트리스트에서 신분증 정보를 삭제하는 함수

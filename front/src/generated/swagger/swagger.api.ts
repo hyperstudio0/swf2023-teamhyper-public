@@ -513,6 +513,65 @@ export interface LanguageSetting {
   ja: boolean;
 }
 
+export type Any = object;
+
+export interface Count {
+  whiteList: number;
+  blackList: number;
+}
+
+export interface PostWhiteList {
+  did: string;
+}
+
+export interface PostBlackListBody {
+  id: string;
+  reason: number;
+  identityType: number;
+}
+
+export interface AuthBody {
+  value: string;
+}
+
+export interface TxHashDTO {
+  id: number;
+  hash: string;
+  type: string;
+  mode: string;
+  reason: string;
+  identityType: number;
+  /**
+   * 등록일
+   * @format date-time
+   * @example ""
+   */
+  createdTime: string;
+  /**
+   * 등록한 계정 ID
+   * @example ""
+   */
+  createdBy: number;
+  /**
+   * 수정시간
+   * @format date-time
+   * @example ""
+   */
+  updatedTime: string;
+  /**
+   * 수정한 계정 ID
+   * @example ""
+   */
+  updatedBy: number;
+}
+
+export interface TxHashPage {
+  /** 데이터 */
+  items: TxHashDTO[];
+  /** 페이지 메타 정보 */
+  metadata: PaginationMetadata;
+}
+
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, HeadersDefaults, ResponseType } from "axios";
 
 export type QueryParamsType = Record<string | number, any>;
@@ -871,12 +930,12 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         query?: string;
         /**
          * @format date-time
-         * @example "2023-07-26T08:18:55.298Z"
+         * @example "2023-08-01T15:13:24.423Z"
          */
         startTime?: string;
         /**
          * @format date-time
-         * @example "2023-07-26T08:18:55.298Z"
+         * @example "2023-08-01T15:13:24.423Z"
          */
         endTime?: string;
         /**
@@ -1118,6 +1177,214 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         body: data,
         secure: true,
         type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 스마트 컨트랙트 API
+     * @name ScContractAddress
+     * @summary 스마트 컨트랙트 주소
+     * @request GET:/api/v1/smart-contract/address
+     */
+    scContractAddress: (params: RequestParams = {}) =>
+      this.request<string, any>({
+        path: `/api/v1/smart-contract/address`,
+        method: "GET",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 스마트 컨트랙트 API
+     * @name ScAbi
+     * @summary 스마트 컨트랙트 주소
+     * @request GET:/api/v1/smart-contract/abi
+     */
+    scAbi: (params: RequestParams = {}) =>
+      this.request<Any, any>({
+        path: `/api/v1/smart-contract/abi`,
+        method: "GET",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 스마트 컨트랙트 API
+     * @name ScCount
+     * @summary Whitelist/Blacklist 수
+     * @request GET:/api/v1/smart-contract
+     */
+    scCount: (params: RequestParams = {}) =>
+      this.request<Count, any>({
+        path: `/api/v1/smart-contract`,
+        method: "GET",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 스마트 컨트랙트 API
+     * @name ScPostWhiteList
+     * @summary Whitelist 등록
+     * @request POST:/api/v1/smart-contract/white-list
+     */
+    scPostWhiteList: (data: PostWhiteList, params: RequestParams = {}) =>
+      this.request<string, any>({
+        path: `/api/v1/smart-contract/white-list`,
+        method: "POST",
+        body: data,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 스마트 컨트랙트 API
+     * @name ScPostBlackList
+     * @summary Blacklist 등록
+     * @request POST:/api/v1/smart-contract/black-list
+     */
+    scPostBlackList: (data: PostBlackListBody, params: RequestParams = {}) =>
+      this.request<string, any>({
+        path: `/api/v1/smart-contract/black-list`,
+        method: "POST",
+        body: data,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 스마트 컨트랙트 API
+     * @name ScAuthWhiteList
+     * @summary Whitelist 인증
+     * @request POST:/api/v1/smart-contract/auth
+     */
+    scAuthWhiteList: (data: AuthBody, params: RequestParams = {}) =>
+      this.request<string, any>({
+        path: `/api/v1/smart-contract/auth`,
+        method: "POST",
+        body: data,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 스마트 컨트랙트 API
+     * @name ScDeleteWhiteList
+     * @summary Whitelist 삭제
+     * @request DELETE:/api/v1/smart-contract/white-list/{did}
+     */
+    scDeleteWhiteList: (did: string, params: RequestParams = {}) =>
+      this.request<string, any>({
+        path: `/api/v1/smart-contract/white-list/${did}`,
+        method: "DELETE",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 스마트 컨트랙트 API
+     * @name ScDeleteBlackList
+     * @summary Blacklist 삭제
+     * @request DELETE:/api/v1/smart-contract/black-list/{id}
+     */
+    scDeleteBlackList: (id: string, params: RequestParams = {}) =>
+      this.request<string, any>({
+        path: `/api/v1/smart-contract/black-list/${id}`,
+        method: "DELETE",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 트렌젝션 해시 API
+     * @name TxHashPage
+     * @summary 트렌젝션 해시  paging
+     * @request GET:/api/v1/tx-hash
+     */
+    txHashPage: (
+      query?: {
+        /**
+         * 검색어
+         * @example ""
+         */
+        query?: string;
+        /**
+         * @format date-time
+         * @example "2023-08-01T15:13:24.423Z"
+         */
+        startTime?: string;
+        /**
+         * @format date-time
+         * @example "2023-08-01T15:13:24.423Z"
+         */
+        endTime?: string;
+        /**
+         * 한 페이지에 표시할 레코드의 개수
+         * @example 20
+         */
+        size?: number;
+        /**
+         * 현재 페이지 번호 (1부터 시작)
+         * @example 1
+         */
+        page?: number;
+        /**
+         * 유형
+         * @example "WHITELIST"
+         */
+        type?: "WHITELIST" | "BLACKLIST";
+        /**
+         * 모드
+         * @example "CREATE"
+         */
+        mode?: "CREATE" | "DELETE";
+        /** 순서변경 */
+        orderBy?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<TxHashPage, any>({
+        path: `/api/v1/tx-hash`,
+        method: "GET",
+        query: query,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags 트렌젝션 해시 API
+     * @name TxHashGet
+     * @summary 트렌젝션 해시 상세
+     * @request GET:/api/v1/tx-hash/{id}
+     */
+    txHashGet: (id: number, params: RequestParams = {}) =>
+      this.request<TxHashDTO, any>({
+        path: `/api/v1/tx-hash/${id}`,
+        method: "GET",
         format: "json",
         ...params,
       }),
