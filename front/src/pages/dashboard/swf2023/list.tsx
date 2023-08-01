@@ -38,6 +38,7 @@ import {fTimestamp} from "../../../utils/format-time";
 import BoardTableFiltersResult from "../../../sections/board/board-table-filters-result";
 import {TxHashEdit, TxHashNew, TxHashTableRow, TxHashTableToolbar, TxHashView} from "../../../sections/tx-hash";
 import {useRouter} from "../../../routes/hooks";
+import Image from "../../../components/image";
 
 // ----------------------------------------------------------------------
 export type IBoardFilters = {
@@ -103,6 +104,7 @@ export default function Swf2023ListPage() {
     const [openEdit, setOpenEdit] = useState<boolean>(false);
 
     const [openRowDeleteDiagram, setOpenRowDeleteDiagram] = useState(false);
+    const [contractAddress, setContractAddress] = useState<string>('');
 
     const table = useTable({
         defaultOrderBy: "id",
@@ -269,6 +271,11 @@ export default function Swf2023ListPage() {
         }
     };
 
+    const initContractAddress = async () => {
+        const response = await Swagger.api.scContractAddress();
+        setContractAddress(response.data);
+    }
+
     useEffect(() => {
         // 다국어 설정
         console.log(systemLanguage, "systemLanguage");
@@ -348,6 +355,10 @@ export default function Swf2023ListPage() {
         }
     }, [selectedId]);
 
+    useEffect(() => {
+        initContractAddress();
+    }, []);
+
     return (
         <>
             <Helmet>
@@ -377,7 +388,7 @@ export default function Swf2023ListPage() {
                                 onClick={() => {
                                     router.push(paths.dashboard.swf2023.addWhite);
                                 }}
-                                variant="contained"
+                                variant="outlined"
                                 startIcon={<Iconify icon="eva:plus-fill"/>}
                             >
                                 화이트리스트 등록
@@ -390,6 +401,16 @@ export default function Swf2023ListPage() {
                                 startIcon={<Iconify icon="eva:plus-fill"/>}
                             >
                                 블랙리스트 등록
+                            </Button>
+                            <Button
+                                onClick={() => {
+                                    window.open(`https://cronos.org/explorer/testnet3/address/${contractAddress}`)
+                                }}
+                                variant="outlined"
+                                endIcon={<Iconify icon="clarity:pop-out-line"/>}
+                            >
+                                <Image sx={{height: 30}}
+                                       src={"https://cronos.org/explorer/testnet3/images/cronos_logo-87909e437f4951433658253df3e1c1c8.svg?vsn=d"}/>
                             </Button>
                         </Stack>
                     }
