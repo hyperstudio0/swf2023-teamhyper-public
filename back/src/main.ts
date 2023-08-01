@@ -71,10 +71,6 @@ async function bootstrapApp() {
 
     initDBCreate(app);
 
-    const smartContractService = app.get(SmartContractService);
-    console.log(await smartContractService.count());
-    await smartContractService.event();
-
     encryptTest();
 }
 
@@ -114,6 +110,10 @@ async function bootstrapAdmin() {
     console.log(`Admin Application is running on: ${await app.getUrl()}`);
 
     initDBCreate(app);
+
+    const smartContractService = app.get(SmartContractService);
+    console.log(await smartContractService.count());
+    await smartContractService.event();
 }
 
 async function bootstrap() {
