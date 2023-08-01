@@ -60,8 +60,8 @@ export default function TxHashTableRow({
 
     const handleDelete = async (id: number) => {
         try {
-            const {data} = await Swagger.api.boardDelete(id);
-            enqueueSnackbar(data.message, {variant: "success"});
+            // const {data} = await Swagger.api.scDeleteBlackList(id);
+            // enqueueSnackbar(data.message, {variant: "success"});
         } catch (e) {
             console.error(e);
             enqueueSnackbar(e.message, {variant: "error"});
@@ -124,14 +124,14 @@ export default function TxHashTableRow({
 
                 <TableCell align="center">{fDateTime(createdTime)}</TableCell>
 
-                <TableCell align="right">
-                    <IconButton
-                        color={openPopover ? "inherit" : "default"}
-                        onClick={handleOpenPopover}
-                    >
-                        <Iconify icon="eva:more-vertical-fill"/>
-                    </IconButton>
-                </TableCell>
+                {/*<TableCell align="right">*/}
+                {/*    <IconButton*/}
+                {/*        color={openPopover ? "inherit" : "default"}*/}
+                {/*        onClick={handleOpenPopover}*/}
+                {/*    >*/}
+                {/*        <Iconify icon="eva:more-vertical-fill"/>*/}
+                {/*    </IconButton>*/}
+                {/*</TableCell>*/}
             </TableRow>
 
             <CustomPopover
@@ -160,18 +160,18 @@ export default function TxHashTableRow({
                     수정
                 </MenuItem>
 
-                <Divider sx={{borderStyle: "dashed"}}/>
+                {/*<Divider sx={{borderStyle: "dashed"}}/>*/}
 
-                <MenuItem
-                    onClick={() => {
-                        handleOpenConfirm();
-                        handleClosePopover();
-                    }}
-                    sx={{color: "error.main"}}
-                >
-                    <Iconify icon="eva:trash-2-outline"/>
-                    삭제
-                </MenuItem>
+                {/*<MenuItem*/}
+                {/*    onClick={() => {*/}
+                {/*        handleOpenConfirm();*/}
+                {/*        handleClosePopover();*/}
+                {/*    }}*/}
+                {/*    sx={{color: "error.main"}}*/}
+                {/*>*/}
+                {/*    <Iconify icon="eva:trash-2-outline"/>*/}
+                {/*    삭제*/}
+                {/*</MenuItem>*/}
             </CustomPopover>
 
             <TableRowDeleteDiagram

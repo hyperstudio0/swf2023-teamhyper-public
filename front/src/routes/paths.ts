@@ -97,6 +97,8 @@ export const paths = {
       detection: `${ROOTS.DASHBOARD}/swf2023/detection`,
       addWhite: `${ROOTS.DASHBOARD}/swf2023/add-white`,
       addBlack: `${ROOTS.DASHBOARD}/swf2023/add-black`,
+      deleteWhite: `${ROOTS.DASHBOARD}/swf2023/delete-white`,
+      deleteBlack: `${ROOTS.DASHBOARD}/swf2023/delete-black`,
       // black: `${ROOTS.DASHBOARD}/swf2023/black`,
       // white: `${ROOTS.DASHBOARD}/swf2023/white`,
     },

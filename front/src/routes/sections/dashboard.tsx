@@ -10,6 +10,8 @@ import Swf2023ListPage from "../../pages/dashboard/swf2023/list";
 import Swf2023DectectionPage from "../../pages/dashboard/swf2023/dectection";
 import AddWhitePage from "../../pages/dashboard/swf2023/add-white";
 import AddBlackPage from "../../pages/dashboard/swf2023/add-black";
+import DeleteWhitePage from "../../pages/dashboard/swf2023/delete-white";
+import DeleteBlackPage from "../../pages/dashboard/swf2023/delete-black";
 
 // ----------------------------------------------------------------------
 
@@ -98,6 +100,8 @@ export const dashboardRoutes = [
           { path: 'detection', element: <Swf2023DectectionPage /> },
           { path: 'add-white', element: <AddWhitePage /> },
           { path: 'add-black', element: <AddBlackPage /> },
+          { path: 'delete-white', element: <DeleteWhitePage /> },
+          { path: 'delete-black', element: <DeleteBlackPage /> },
         ],
       },
       {

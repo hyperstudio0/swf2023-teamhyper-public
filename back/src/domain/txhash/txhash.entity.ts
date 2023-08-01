@@ -25,7 +25,7 @@ export class TxHashEntity extends AbstractEntity {
     @Column({type: 'enum', enum: Mode, comment: '모드'})
     mode: Mode;
 
-    @Column({nullable: true, unique: true})
+    @Column({nullable: true})
     hash: string;
 
     @Column({type: 'int', comment: '블랙리스트 이유', nullable: true})

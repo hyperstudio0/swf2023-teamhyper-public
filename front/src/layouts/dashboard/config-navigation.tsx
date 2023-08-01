@@ -87,11 +87,11 @@ export function useNavData() {
             path: paths.dashboard.swf2023.root,
             icon: ICONS.label,
           },
-          {
-            title: 'Detection',
-            path: paths.dashboard.swf2023.detection,
-            icon: ICONS.lock,
-          },
+          // {
+          //   title: 'Detection',
+          //   path: paths.dashboard.swf2023.detection,
+          //   icon: ICONS.lock,
+          // },
           {
             title: 'Add White-List',
             path: paths.dashboard.swf2023.addWhite,
@@ -101,6 +101,16 @@ export function useNavData() {
             title: 'Add Black-List',
             path: paths.dashboard.swf2023.addBlack,
             icon: ICONS.disabled,
+          },
+          {
+            title: 'Delete White-List',
+            path: paths.dashboard.swf2023.deleteWhite,
+            icon: ICONS.folder,
+          },
+          {
+            title: 'Delete Black-List',
+            path: paths.dashboard.swf2023.deleteBlack,
+            icon: ICONS.folder,
           }
         ],
       },
