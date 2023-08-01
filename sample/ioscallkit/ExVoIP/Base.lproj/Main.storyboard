@@ -17,47 +17,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4E4-Lk-YO5">
-                                <rect key="frame" x="141.5" y="431" width="131" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" toolTip="휴대폰번호" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VNi-4n-Y4d">
+                                <rect key="frame" x="20" y="101" width="374" height="34"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9bM-et-fEm">
+                                <rect key="frame" x="146.5" y="152" width="121" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="01041533582"/>
+                                <buttonConfiguration key="configuration" style="filled" title="전화번호 입력 "/>
                                 <connections>
-                                    <action selector="didTap3582Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tPf-tQ-fcm"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="slj-E8-ZLD">
-                                <rect key="frame" x="143" y="525" width="128" height="34.5"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="01012341234"/>
-                                <connections>
-                                    <action selector="didTapOutgoingButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5ev-v6-WLS"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfd-h8-aA3">
-                                <rect key="frame" x="142" y="337" width="130" height="34"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="01057370257"/>
-                                <connections>
-                                    <action selector="didTap0257Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HVf-AM-cS2"/>
+                                    <action selector="handleClickButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o6Z-fg-Emc"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="slj-E8-ZLD" firstAttribute="top" secondItem="4E4-Lk-YO5" secondAttribute="bottom" constant="60" id="8T2-Fb-dKx"/>
-                            <constraint firstItem="4E4-Lk-YO5" firstAttribute="top" secondItem="vfd-h8-aA3" secondAttribute="bottom" constant="60" id="LmH-ws-ZEy"/>
-                            <constraint firstItem="vfd-h8-aA3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="289" id="OFG-Vs-ekL"/>
-                            <constraint firstItem="vfd-h8-aA3" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="U8e-hs-PyI"/>
-                            <constraint firstItem="4E4-Lk-YO5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cU1-n6-eM2"/>
-                            <constraint firstItem="4E4-Lk-YO5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="rZM-sj-HHI"/>
-                            <constraint firstItem="slj-E8-ZLD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tEG-by-laa"/>
+                            <constraint firstItem="9bM-et-fEm" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="2IS-Zi-yJT"/>
+                            <constraint firstItem="VNi-4n-Y4d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Hn8-UK-GwM"/>
+                            <constraint firstItem="9bM-et-fEm" firstAttribute="top" secondItem="VNi-4n-Y4d" secondAttribute="bottom" constant="17" id="Kwx-ll-gJZ"/>
+                            <constraint firstItem="VNi-4n-Y4d" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="53" id="qhd-Ll-0e4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VNi-4n-Y4d" secondAttribute="trailing" constant="20" id="tBh-7S-qfd"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textfield" destination="VNi-4n-Y4d" id="jTG-RM-JsI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="83" y="116"/>
+            <point key="canvasLocation" x="82.608695652173921" y="115.84821428571428"/>
         </scene>
     </scenes>
     <resources>

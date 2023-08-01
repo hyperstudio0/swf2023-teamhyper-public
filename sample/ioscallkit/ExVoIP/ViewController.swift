@@ -33,18 +33,42 @@ class ViewController: UIViewController {
             .reloadExtension(withIdentifier: "com.ExVoIP.CallDirectory") { error in
                 print(error ?? "")
             }
+        
+        configureTextField();
     }
     
-    @IBAction func didTap3582Button(_ sender: Any) {
-        self.receiving3582()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Show the keyboard when the view appears
+        textfield.becomeFirstResponder()
     }
     
-    @IBAction func didTap0257Button(_ sender: Any) {
-        self.receiving0257()
+    
+    @IBOutlet weak var textfield: UITextField!
+    func configureTextField() {
+        // Set background color to white
+        textfield.backgroundColor = UIColor.white
+        
+        // Set border color to black
+        textfield.layer.borderColor = UIColor.black.cgColor
+        textfield.layer.borderWidth = 1.0
+        textfield.layer.cornerRadius = 5.0 // Add corner radius for a nicer look (optional)
+        
+        // Set attributed placeholder text with black color
+        let placeholderText = "휴대폰번호를 입력해주세요"
+        let attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        textfield.attributedPlaceholder = attributedPlaceholder
+        
+        // Set input text color to black
+        textfield.textColor = UIColor.black
     }
     
-    @IBAction func didTapOutgoingButton(_ sender: Any) {
-        self.outgoing()
+    @IBAction func handleClickButton(_ sender: Any) {
+        if let inputValue = textfield.text {
+            print("Input Value: \(inputValue)")
+            authNumber(mobile: inputValue);
+        }
     }
     
     struct DecodableType: Decodable { let url: String }
@@ -57,11 +81,11 @@ class ViewController: UIViewController {
         let update = CXCallUpdate()
         update.remoteHandle = CXHandle(type: .generic, value: mobile)
         if(isWhiteListed) {
-            update.localizedCallerName = "🟢 인증된 전화번호입니다. \(mobile)"
+            update.localizedCallerName = "🟢 인증된 전화번호입니다. Tel.\(mobile)"
         } else if(isBlackListed) {
-            update.localizedCallerName = "🔴 조심하세요! 의심되는 전화번호입니다. \(mobile)"
+            update.localizedCallerName = "🔴 조심하세요! 보이스피싱이 의심되는 전화번호입니다.  Tel.\(mobile)"
         } else {
-            update.localizedCallerName = "🟠 아직 확인되지 않은 전화번호입니다. \(mobile)"
+            update.localizedCallerName = "🟠 아직 확인되지 않은 전화번호입니다. Tel.\(mobile)"
         }
         
         provider.reportNewIncomingCall(with: UUID(), update: update) { error in
@@ -104,14 +128,14 @@ class ViewController: UIViewController {
     // 전화 하기
     private func outgoing() {
         authNumber(mobile: "01012341234");
-//        let uuid = UUID()
-//        let handle = CXHandle(type: .emailAddress, value: "palatable77@gmail.com")
-//
-//        let startCallAction = CXStartCallAction(call: uuid, handle: handle)
-//        let transaction = CXTransaction(action: startCallAction)
-//        self.callController.request(transaction) { error in
-//            print(error ?? "")
-//        }
+        //        let uuid = UUID()
+        //        let handle = CXHandle(type: .emailAddress, value: "palatable77@gmail.com")
+        //
+        //        let startCallAction = CXStartCallAction(call: uuid, handle: handle)
+        //        let transaction = CXTransaction(action: startCallAction)
+        //        self.callController.request(transaction) { error in
+        //            print(error ?? "")
+        //        }
     }
 }
 
