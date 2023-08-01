@@ -1,0 +1,26 @@
+<tr>
+  <td align="center" style="padding:10px">
+
+    <table border="0" cellpadding="0" cellspacing="0"
+           style="text-align:left;width:100%;margin:0 auto;box-sizing:border-box">
+      <tbody>
+      <tr>
+        <td
+          style="font-size:12px;font-family:Arial,sans-serif;color:#999;padding-bottom:10px;padding-top:10px">
+          This email is sent as of {{ sendTime }}, to confirm your consent to receive communications. As you have agreed to receive emails, this message is being sent to you.<br>
+          If you no longer wish to receive such information or emails, please click <a
+          href="{{ unsubscribeUrl }}"
+          target="_blank"
+          data-saferedirecturl="{{ unsubscribeUrl }}"><b>[unsubscription]</b></a>.
+        </td>
+      </tr>
+      <tr>
+        <td style="font-size:12px;font-family:Arial,sans-serif;color:#666">
+          Sender's Name (Company Name): {{ companyName }}<br>Location: {{ companyAddress }}<br>TEL: {{ companyTel }}, Email: <a
+          href="mailto:{{ companyEmail }}" target="_blank">{{ companyEmail }}</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </td>
+</tr>

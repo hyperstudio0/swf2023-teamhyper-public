@@ -1,0 +1,10 @@
+back/node_modules
+contract/artifacts
+contract/node_modules
+contract/cache
+back/dist
+swf2023-teamhyper.iml
+front/node_modules
+back/.env
+front/.env
+contract/.env

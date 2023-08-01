@@ -1,0 +1,36 @@
+{
+  "USER_UPDATE": {
+    "EMPTY_USER": "존재하지 않는 사용자 계정입니다.",
+
+    "ALREADY_EMAIL": "이미 인증이 완료된 이메일 계정입니다.",
+    "EXIST_EMAIL": "이미 존재하는 이메일입니다.",
+    "CREATE_EMAIL_FAILED": "이메일 인증 코드 발행을 실패하였습니다.",
+    "SEND_EMAIL_FAILED": "이메일 인증 코드 발송을 실패하였습니다.",
+    "VERIFICATION_EMAIL_FAILED": "이메일 인증을 실패하였습니다.",
+    "BAD_EMAIL": "잘못된 이메일 주소입니다.",
+
+    "BAD_MOBILE": "잘못된 휴대폰번호입니다.",
+    "VERIFICATION_MOBILE_FAILED": "휴대폰번호 인증을 실패하였습니다.",
+
+    "NICKNAME": {
+      "EMPTY": "닉네임을 입력해주세요.",
+      "EXIST": "이미 존재하는 닉네임입니다.",
+      "VALID": "닉네임이 유효하지 않습니다."
+    },
+
+    "PASSWORD": {
+      "NOT_MATCH_OLD": "비밀번호를 잘못 입력하였습니다.",
+      "NOT_MATCH_CONFIRM": "비밀번호가 일치하지 않습니다",
+      "OLD_SAME": "기존 비밀번호와 다른 비밀번호를 사용하세요.",
+      "NOT_EMPTY": "비밀번호가 존재합니다."
+    },
+
+    "IDV": {
+      "NOT_ME": "생년월일 및 성별이 최초 회원가입과 일치하지 않습니다.",
+      "FAILED": "본인인증 후, 회원정보 수정을 실패하였습니다."
+    },
+
+    "NOT_MATCH_CODE": "인증코드가 일치하지 않습니다.",
+    "UNKNOWN_ERROR": "알수없는 에러."
+  }
+}

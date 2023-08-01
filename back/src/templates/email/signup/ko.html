@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+<div style="width:100%;max-width:800px;margin:0 auto">
+
+  <table border="0" cellpadding="0" cellspacing="0"
+         style="width:100%;min-height:100%;max-width:800px;border:0;box-sizing:border-box;margin:0 auto">
+    <tbody>
+    <tr>
+      <td style="padding-bottom:20px;word-break:break-all;border-bottom:1px solid #e1e1e1">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%"
+               style="width:100%;height:100%;min-height:100%;max-width:800px;margin:0 auto;padding:0;border:0;box-sizing:border-box;border-collapse:separate;word-spacing:normal">
+          <tbody>
+          <tr>
+            <td valign="top" style="border-color:#ffffff;border-width:0px;vertical-align:top">
+
+              <div style="background-color:#E3E3E3; padding-top:80px; padding-bottom:80px; font-size:0">
+
+                <div style="margin:0 auto; min-width:68.4%; max-width:90%; width:calc((500px - 100%)*600)">
+
+                  {{{ headerImageHtml }}}
+
+                  <div
+                    style="background-color:#fff;padding-top:20px;padding-bottom:20px; padding-left: 0; padding-right: 0;">
+                    <div style="padding-top:20px; padding-left: 0; padding-right: 0;"></div>
+
+                    <div style="padding-right:15px;padding-left:15px">
+
+                      <strong
+                        style="display:block;font-family: Arial ;font-size:19px; color:#333333; margin-bottom: 15px">
+                        [{{ serviceName }}] 이메일 인증 안내드립니다.
+                      </strong>
+
+
+                      <br /><br /><br />
+
+                      <p style="border-color:#fff;margin:0;font-size:16px;line-height:1.7;color:#333333;font-weight:normal;font-family:Arial,sans-serif;word-break:break-all">
+                        안녕하세요😊<br/>
+                        <br/>
+                        {{ serviceName }}에 가입해 주셔서 감사합니다! 회원가입을 완료하려면 이메일 인증이 필요합니다. 아래에 필요한 정보를 안내해 드리겠습니다.<br/>
+                        <br/>
+                        <strong>가입 시간: {{ joinTime }}</strong><br/>
+                        <strong>가입한 ID(이메일): {{ email }}</strong><br/>
+                        <br/>
+                        아래의 이메일 인증 링크를 클릭해 주세요: <br/>
+                        <a target="_blank" href="{{ emailAuthLink }}">{{ emailAuthLink }}</a><br/>
+                        <br/>
+                        이메일 인증은 {{ serviceName }}의 모든 기능을 이용하기 위한 필수 단계입니다. 인증 링크를 클릭하시면 이메일이 성공적으로 인증됩니다.<br/>
+                        <br/>
+                        궁금한 사항이 있거나 도움이 필요한 경우, 언제든지 {{ serviceName }} 팀에 문의해 주세요. 저희 팀은 항상 도움을 드릴 준비가 되어 있습니다.<br/>
+                        <br/>
+                        {{ serviceName }}에서 함께할 수 있어서 다시 한번 감사드립니다!<br/>
+                        <br/>
+                        감사합니다.<br/><br/>
+                        {{ serviceName }} 팀 드림
+
+                      </p>
+                    </div>
+
+                    <div
+                      style="padding-top:20px;padding-right:15px;padding-bottom:20px;padding-left:15px">
+                      <table border="0" cellpadding="0" cellspacing="0"
+                             width="100%" style="width:100%;border-collapse:separate">
+                        <tbody>
+                        <tr></tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+
+                    <div
+                      style="padding-right:15px;padding-bottom:20px;padding-left:15px"></div>
+                  </div>
+
+
+                </div>
+
+
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+
+    {{{ footerHtml }}}
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

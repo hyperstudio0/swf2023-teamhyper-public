@@ -1,0 +1,58 @@
+{
+  "UNAUTHORIZED": "계정이 인증되지 않았습니다.",
+  "JOIN_ERROR": "회원가입 정보가 업습니다.",
+  "CHECK_PASSWORD": "비밀번호를 다시 확인해주세요.",
+
+  "JOIN_EMPTY_EMAIL": "이메일 정보가 업습니다.",
+  "JOIN_ALREADY_EMAIL": "이미 가입한 이메일 계정입니다.",
+  "JOIN_BAD_EMAIL": "잘못된 이메일 정보입니다.",
+  "JOIN_ALREADY_MOBILE": "이미 가입한 휴대폰번호입니다.",
+
+  "JOIN_EMPTY_MOBILE": "휴대폰번호를 입력하시오.",
+  "JOIN_BAD_MOBILE": "잘못된 휴대폰번호입니다.",
+
+  "JOIN_BAD_NICKNAME": "잘못된 닉네임(별명)입니다.",
+  "JOIN_EMPTY_NICKNAME": "닉네임(별명)을 입력하세요.",
+  "JOIN_DUPLICATE_NICKNAME": "이미 사용중인 닉네임(별명)입니다. 다른 넥네임을 사용해주세요.",
+
+  "JOIN_BAD_FIRSTNAME": "이름을 입력하세요.",
+  "JOIN_BAD_LASTNAME": "성을 입력하세요.",
+
+  "JOIN_BAD_GENDER": "성별을 입력하세요.",
+  "JOIN_BAD_BIRTH": "생년월일을 입력하세요.",
+
+  "JOIN_BAD_SERVICE": "서비스 이용약관을 동의해주세요.",
+  "JOIN_BAD_PRIVACY": "개인정보 취급방침을 동의해주세요.",
+
+  "JOIN_BAD_PASSWORD": "최소 8자 이상이며, 최소 하나의 영문자를 포함하여야 합니다.",
+  "JOIN_UNAUTHORIZED": "이용할수 없는 계정입니다.",
+
+  "LOGIN_EMPTY_USER": "사용자가 존재하지 않습니다.",
+  "LOGIN_BLOCKED_USER": "차단된 사용자입니다. 관리자에 문의해주세요",
+  "LOGIN_BAD_USER": "로그인을 하지 못하였습니다.",
+  "LOGIN_NOT_MATCH_PWD": "비밀번호 또는 아이디(이메일)을 다시 확인해주세요.",
+
+  "SNS_GOOGLE_ERROR": "구글 로그인에서 예기치 않은 오류가 발생했습니다.",
+  "SNS_KAKAO_ERROR": "카카오 로그인에서 예기치 않은 오류가 발생했습니다.",
+  "SNS_NAVER_ERROR": "네이버 로그인에서 예기치 않은 오류가 발생했습니다.",
+
+  "SNS_CONNECT_EMPTY_KEY": "SNS key가 존재하지 않습니다.",
+  "SNS_CONNECT_EMPTY_SNSTYPE": "SNS 유형이 존재하지 않습니다.",
+  "SNS_CONNECT_BAD_SNSTYPE": "잘못된 SNS 유형입니다.",
+  "SNS_CONNECT_EMPTY_EMAIL": "이메일을 입력해주세요.",
+  "SNS_CONNECT_EMPTY_PASSWORD": "비밀번호를 입력해주세요.",
+
+  "AWS_SES_EMPTY_BODY": "이메일의 내용을 입력해주세요.",
+  "AWS_SES_EMPTY_TO": "수신자 이메일을 입력해주세요.",
+  "AWS_SES_EMPTY_SUBJECT": "이메일의 제목을 입력해주세요.",
+
+  "SEARCH": {
+    "QUERY_TWO": "검색어는 2글자이상 입력하세요."
+  },
+
+  "LEAVE": {
+    "ALREADY": "이미 탈퇴한 회원입니다."
+  },
+
+  "HELLO": "안녕"
+}

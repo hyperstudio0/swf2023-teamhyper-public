@@ -1,0 +1,27 @@
+<tr>
+  <td align="center" style="padding:10px">
+
+    <table border="0" cellpadding="0" cellspacing="0"
+           style="text-align:left;width:100%;margin:0 auto;box-sizing:border-box">
+      <tbody>
+      <tr>
+        <td
+          style="font-size:12px;font-family:Arial,sans-serif;color:#999;padding-bottom:10px;padding-top:10px">
+          본 이메일은 {{ sendTime }}를 기준으로, 회원님의 수신 동의 여부를 확인한 결과 회원님께서 수신 동의를 하셨기에 발송되었습니다.<br>
+          만약 이메일 수신을 원치 않으시면 <a
+          href="{{ unsubscribeUrl }}"
+          target="_blank"
+          data-saferedirecturl="{{ unsubscribeUrl }}"><b>[수신거부]</b></a>를
+          클릭하세요.
+        </td>
+      </tr>
+      <tr>
+        <td style="font-size:12px;font-family:Arial,sans-serif;color:#666">
+          발송자명(업체명): {{ companyName }}<br>소재지: {{ companyAddress }}<br>전화번호: {{ companyTel }}, 이메일: <a
+          href="mailto:{{ companyEmail }}" target="_blank">{{ companyEmail }}</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </td>
+</tr>
