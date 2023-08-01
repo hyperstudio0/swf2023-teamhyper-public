@@ -57,9 +57,13 @@ async function bootstrapApp() {
     });
     SwaggerModule.setup('api-doc', app, document);
 
+    console.log(process.env.HOST_SERVICE, 'process.env.HOST_SERVICE');
     // 개발용 (프론트포트)
     app.enableCors({
         origin: process.env.HOST_SERVICE,
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        allowedHeaders: 'Content-Type, Accept',
+        credentials: true,
     });
 
     await app.listen(3001);
@@ -97,9 +101,13 @@ async function bootstrapAdmin() {
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('api-doc', app, document);
 
+    console.log(process.env.HOST_SERVICE, 'process.env.HOST_SERVICE');
     // 개발용 (프론트포트)
     app.enableCors({
-        origin: process.env.HOST_ADMIN,
+        origin: process.env.HOST_SERVICE,
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        allowedHeaders: 'Content-Type, Accept',
+        credentials: true,
     });
 
     await app.listen(3002);
